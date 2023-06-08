@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookRental.Domain.Common;
 
-namespace BookRental.Domain.Entities
+namespace BookRental.Domain.Entities;
+
+#nullable disable
+
+public sealed class Book : BaseEntity
 {
-	internal class Book
-	{
-	}
+	public string Title { get; set; }
+	public int PublicationYear { get; set; }
+	public Author Author { get; set; }
+	public Genre Genre { get; set; }	
+	public int AuthorId { get; set; }
+	public int GenreId { get; set; }
 }
