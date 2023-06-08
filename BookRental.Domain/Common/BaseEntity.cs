@@ -1,9 +1,6 @@
-﻿namespace BookRental.Domain.Common
-{
-	public abstract class BaseEntity
-	{
-		public int Id { get; set; }
+﻿namespace BookRental.Domain.Common;
 
-		public DateTime CreatedDate { get; set; }
-	}
+public abstract class BaseEntity
+{
+	public int Id { get; set; }
 }

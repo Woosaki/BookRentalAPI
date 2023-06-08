@@ -4,9 +4,8 @@ namespace BookRental.Domain.Entities;
 
 #nullable disable
 
-public sealed class Author : BaseEntity
+public sealed class Genre : BaseEntity
 {
 	public string Name { get; set; }
-	public DateOnly Born { get; set; }
 	public List<Book> Books { get; set; } = new();
 }

@@ -1,6 +1,5 @@
-﻿namespace BookRental.API.Middlewares
+﻿namespace BookRental.API.Middlewares;
+
+public class ErrorHandlerMiddleware
 {
-	public class ErrorHandlerMiddleware
-	{
-	}
 }

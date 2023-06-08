@@ -1,6 +1,5 @@
-﻿namespace BookRental.API.Extensions
+﻿namespace BookRental.API.Extensions;
+
+public static class AppExtensions
 {
-	public static class AppExtensions
-	{
-	}
 }
