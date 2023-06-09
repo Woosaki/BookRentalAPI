@@ -1,11 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookRental.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BookRental.Infrastructure.Configurations;
 
-internal class BookConfiguration
+public class BookConfiguration : IEntityTypeConfiguration<Book>
 {
+	public void Configure(EntityTypeBuilder<Book> builder)
+	{
+		builder.Property(b => b.Title)
+			.IsRequired()
+			.HasMaxLength(100);
+
+		builder.Property(b => b.PublicationYear)
+			.IsRequired();
+
+		builder.HasOne(b => b.Author)
+			.WithMany(a => a.Books)
+			.HasForeignKey(b => b.AuthorId);
+
+		builder.HasOne(b => b.Genre)
+			.WithMany(g => g.Books)
+			.HasForeignKey(b => b.GenreId);
+	}
 }
