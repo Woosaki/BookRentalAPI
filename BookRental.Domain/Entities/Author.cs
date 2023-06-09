@@ -7,6 +7,6 @@ namespace BookRental.Domain.Entities;
 public sealed class Author : BaseEntity
 {
 	public string Name { get; set; }
-	public DateOnly Born { get; set; }
+	public DateTime Born { get; set; }
 	public List<Book> Books { get; set; } = new();
 }
