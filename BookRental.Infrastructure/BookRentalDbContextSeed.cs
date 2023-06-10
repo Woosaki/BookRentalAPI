@@ -6,7 +6,7 @@ namespace BookRental.Infrastructure;
 
 public static class BookRentalDbContextSeed
 {
-	public static async Task SeedAsync(BookRentalDbContext context)
+	public static async Task SeedAsync(BookRentalDbContext? context)
 	{
 		if (context == null)
 			throw new ArgumentNullException(nameof(context));

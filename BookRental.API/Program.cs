@@ -1,5 +1,9 @@
+using BookRental.Application.Interfaces;
+using BookRental.Application.Mapping;
+using BookRental.Application.Services;
 using BookRental.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,8 +12,10 @@ builder.Services.AddDbContext<BookRentalDbContext>(options =>
 		builder.Configuration.GetConnectionString("DefaultConnectionString"),
 		x => x.MigrationsAssembly("BookRental.Infrastructure")));
 
-builder.Services.AddControllers();
-
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddAutoMapper(typeof(GeneralProfile).Assembly);
+builder.Services.AddControllers().AddJsonOptions(options =>
+	options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
