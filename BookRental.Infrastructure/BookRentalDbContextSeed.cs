@@ -6,12 +6,12 @@ namespace BookRental.Infrastructure;
 
 public static class BookRentalDbContextSeed
 {
-	public static async Task SeedAsync(BookRentalDbContext context)
+	public static async Task SeedAsync(BookRentalDbContext? context)
 	{
 		if (context == null)
 			throw new ArgumentNullException(nameof(context));
 
-		if (!context.Authors.Any())
+		if (!context.Authors.Any() && context.Database.IsRelational())
 		{
 			var authorFaker = new Faker<Author>()
 				.RuleFor(a => a.Name, f => f.Name.FullName())

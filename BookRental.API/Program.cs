@@ -1,3 +1,6 @@
+using BookRental.Application.Interfaces;
+using BookRental.Application.Mapping;
+using BookRental.Application.Services;
 using BookRental.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +11,9 @@ builder.Services.AddDbContext<BookRentalDbContext>(options =>
 		builder.Configuration.GetConnectionString("DefaultConnectionString"),
 		x => x.MigrationsAssembly("BookRental.Infrastructure")));
 
+builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddAutoMapper(typeof(GeneralProfile).Assembly);
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -32,3 +36,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
