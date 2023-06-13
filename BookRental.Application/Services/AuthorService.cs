@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BookRental.Application.Dtos;
+using BookRental.Application.Exceptions;
 using BookRental.Application.Interfaces;
 using BookRental.Domain.Entities;
 using BookRental.Infrastructure;
@@ -55,12 +56,8 @@ public class AuthorService : IAuthorService
 	public async Task DeleteAsync(int id)
 	{
 		var author = await _context.Authors
-			.FirstOrDefaultAsync(a => a.Id == id);
-
-		if (author is null)
-		{
-			return;
-		}
+			.FirstOrDefaultAsync(a => a.Id == id)
+			?? throw new NotFoundException("Author not found");
 
 		_context.Authors.Remove(author);
 		await _context.SaveChangesAsync();
