@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRental.API", "BookRental.API\BookRental.API.csproj", "{A601BE45-3B24-4235-BF58-53951E592272}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRental.API", "BookRental.API\BookRental.API.csproj", "{A601BE45-3B24-4235-BF58-53951E592272}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRental.Domain", "BookRental.Domain\BookRental.Domain.csproj", "{A673B138-248A-4E19-A593-B94425E89C7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRental.Domain", "BookRental.Domain\BookRental.Domain.csproj", "{A673B138-248A-4E19-A593-B94425E89C7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRental.Infrastructure", "BookRental.Infrastructure\BookRental.Infrastructure.csproj", "{BC7A8034-57A5-4084-BF45-55E5A48BA156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRental.Infrastructure", "BookRental.Infrastructure\BookRental.Infrastructure.csproj", "{BC7A8034-57A5-4084-BF45-55E5A48BA156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRental.Application", "BookRental.Application\BookRental.Application.csproj", "{7EE73184-E319-46D7-9C87-FF6D56A59443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRental.Application", "BookRental.Application\BookRental.Application.csproj", "{7EE73184-E319-46D7-9C87-FF6D56A59443}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRental.UnitTests", "BookRental.UnitTests\BookRental.UnitTests.csproj", "{59351CF0-37E4-449C-93EA-987F96867C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRental.IntegrationTests", "BookRental.IntegrationTests\BookRental.IntegrationTests.csproj", "{3FB901F8-C091-4D33-A9B1-C78011E7CC2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{7EE73184-E319-46D7-9C87-FF6D56A59443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EE73184-E319-46D7-9C87-FF6D56A59443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EE73184-E319-46D7-9C87-FF6D56A59443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59351CF0-37E4-449C-93EA-987F96867C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59351CF0-37E4-449C-93EA-987F96867C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59351CF0-37E4-449C-93EA-987F96867C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59351CF0-37E4-449C-93EA-987F96867C39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB901F8-C091-4D33-A9B1-C78011E7CC2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB901F8-C091-4D33-A9B1-C78011E7CC2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB901F8-C091-4D33-A9B1-C78011E7CC2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB901F8-C091-4D33-A9B1-C78011E7CC2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

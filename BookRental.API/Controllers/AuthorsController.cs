@@ -1,41 +1,49 @@
 ﻿using BookRental.Application.Dtos;
 using BookRental.Application.Interfaces;
-using BookRental.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookRental.API.Controllers
+namespace BookRental.API.Controllers;
+
+[Route("api/authors")]
+[ApiController]
+public class AuthorsController : ControllerBase
 {
-	[Route("api/authors")]
-	[ApiController]
-	public class AuthorsController : ControllerBase
+	private readonly IAuthorService _authorService;
+
+	public AuthorsController(IAuthorService authorService)
 	{
-		private readonly IAuthorService _authorService;
+		_authorService = authorService;
+	}
 
-		public AuthorsController(IAuthorService authorService)
+	[HttpGet]
+	public async Task<ActionResult<List<AuthorDto>>> GetAllAsync()
+	{
+		var authors = await _authorService.GetAsync();
+
+		if (!authors.Any())
+			return NotFound();
+
+		return Ok(authors);
+	}
+
+	[HttpGet("{id}")]
+	public async Task<ActionResult<AuthorDto>> GetAsync([FromRoute] int id)
+	{
+		var author = await _authorService.GetByIdAsync(id);
+
+		if (author is null)
 		{
-			_authorService = authorService;
+			return NotFound();
 		}
 
-		[HttpGet]
-		public async Task<ActionResult<List<AuthorDto>>> GetAuthorsAsync()
-		{
-			var authors = await _authorService.GetAuthorsAsync();
+		return Ok(author);
+	}
 
-			if (!authors.Any())
-				return NotFound();
+	[HttpPost]
+	public async Task<ActionResult> CreateAsync([FromBody] CreateAuthorDto dto)
+	{
+		var author = await _authorService.CreateAsync(dto);
 
-			return Ok(authors);
-		}
-
-		[HttpGet("{id}")]
-		public async Task<ActionResult<AuthorDto>> GetAuthorAsync([FromRoute] int id)
-		{
-			var author = await _authorService.GetAuthorByIdAsync(id);
-
-			if (author is null)
-				return NotFound();
-
-			return Ok(author);
-		}
+		return Created($"/api/authors/{author.Id}", null);
 	}
 }

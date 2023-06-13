@@ -11,7 +11,7 @@ public static class BookRentalDbContextSeed
 		if (context == null)
 			throw new ArgumentNullException(nameof(context));
 
-		if (!context.Authors.Any())
+		if (!context.Authors.Any() && context.Database.IsRelational())
 		{
 			var authorFaker = new Faker<Author>()
 				.RuleFor(a => a.Name, f => f.Name.FullName())

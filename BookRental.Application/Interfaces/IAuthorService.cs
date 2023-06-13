@@ -1,9 +1,11 @@
 ﻿using BookRental.Application.Dtos;
+using BookRental.Domain.Entities;
 
 namespace BookRental.Application.Interfaces;
 
 public interface IAuthorService
 {
-	Task<List<AuthorDto>> GetAuthorsAsync();
-	Task<AuthorDto?> GetAuthorByIdAsync(int id);
+	Task<List<AuthorDto>> GetAsync();
+	Task<AuthorDto?> GetByIdAsync(int id);
+	Task<Author> CreateAsync(CreateAuthorDto dto);
 }

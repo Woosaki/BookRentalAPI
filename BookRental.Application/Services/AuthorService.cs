@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BookRental.Application.Dtos;
 using BookRental.Application.Interfaces;
+using BookRental.Domain.Entities;
 using BookRental.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,7 @@ public class AuthorService : IAuthorService
 		_mapper = mapper;
 	}
 
-	public async Task<List<AuthorDto>> GetAuthorsAsync()
+	public async Task<List<AuthorDto>> GetAsync()
 	{
 		var authors = await _context.Authors
 				.Take(10)
@@ -30,7 +31,7 @@ public class AuthorService : IAuthorService
 		return authorsDtos;
 	}
 
-	public async Task<AuthorDto?> GetAuthorByIdAsync(int id)
+	public async Task<AuthorDto?> GetByIdAsync(int id)
 	{
 		var author = await _context.Authors
 			.Include(a => a.Books)
@@ -40,5 +41,14 @@ public class AuthorService : IAuthorService
 		var authorDto = _mapper.Map<AuthorDto>(author);
 
 		return authorDto;
+	}
+
+	public async Task<Author> CreateAsync(CreateAuthorDto dto)
+	{
+		var author = _mapper.Map<Author>(dto);
+		await _context.Authors.AddAsync(author);
+		await _context.SaveChangesAsync();
+
+		return author;
 	}
 }
