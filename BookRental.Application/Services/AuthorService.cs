@@ -51,4 +51,18 @@ public class AuthorService : IAuthorService
 
 		return author;
 	}
+
+	public async Task DeleteAsync(int id)
+	{
+		var author = await _context.Authors
+			.FirstOrDefaultAsync(a => a.Id == id);
+
+		if (author is null)
+		{
+			return;
+		}
+
+		_context.Authors.Remove(author);
+		await _context.SaveChangesAsync();
+	}
 }

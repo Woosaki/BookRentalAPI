@@ -46,4 +46,12 @@ public class AuthorsController : ControllerBase
 
 		return Created($"/api/authors/{author.Id}", null);
 	}
+
+	[HttpDelete("{id}")]
+	public async Task<ActionResult> DeleteAsync([FromRoute] int id)
+	{
+		await _authorService.DeleteAsync(id);
+
+		return NoContent();
+	}
 }
