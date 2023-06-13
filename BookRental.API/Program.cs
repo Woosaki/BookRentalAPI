@@ -1,3 +1,4 @@
+using BookRental.API.Extensions;
 using BookRental.Application.Interfaces;
 using BookRental.Application.Mapping;
 using BookRental.Application.Services;
@@ -32,6 +33,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseErrorHandling();
 
 app.MapControllers();
 
