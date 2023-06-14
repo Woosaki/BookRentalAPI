@@ -20,9 +20,6 @@ public class AuthorsController : ControllerBase
 	{
 		var authors = await _authorService.GetAsync();
 
-		if (!authors.Any())
-			return NotFound();
-
 		return Ok(authors);
 	}
 
@@ -30,11 +27,6 @@ public class AuthorsController : ControllerBase
 	public async Task<ActionResult<AuthorDto>> GetAsync([FromRoute] int id)
 	{
 		var author = await _authorService.GetByIdAsync(id);
-
-		if (author is null)
-		{
-			return NotFound();
-		}
 
 		return Ok(author);
 	}
@@ -44,7 +36,7 @@ public class AuthorsController : ControllerBase
 	{
 		var author = await _authorService.CreateAsync(dto);
 
-		return Created($"/api/authors/{author.Id}", null);
+		return Created($"/api/authors/{author.Id}", author);
 	}
 
 	[HttpDelete("{id}")]
