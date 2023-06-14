@@ -8,10 +8,20 @@ public class GeneralProfile : Profile
 {
 	public GeneralProfile()
 	{
-		CreateMap<Author, AuthorDto>();
+		CreateMap<Author, AuthorDto>()
+			.ReverseMap();
+
+		CreateMap<Author, AuthorSummaryDto>();
+
 		CreateMap<Book, AuthorBooksDto>()
 			.ForMember(m => m.Genre, c => c.MapFrom(b => b.Genre.Name));
+
+		CreateMap<Book, BookDto>()
+			.ForMember(m => m.Genre, c => c.MapFrom(b => b.Genre.Name))
+			.ReverseMap();
+
 		CreateMap<Genre, GenreDto>();
+
 		CreateMap<CreateAuthorDto, Author>();
 	}
 }

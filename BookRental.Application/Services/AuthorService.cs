@@ -40,44 +40,48 @@ public class AuthorService : IAuthorService
 		return authorsDtos;
 	}
 
-	public async Task<AuthorDto?> GetByIdAsync(int id)
+	public async Task<AuthorDto> GetByIdAsync(int id)
 	{
-		_logger.LogInformation($"GET method invoked for an author with id: {id}.");
+		_logger.LogInformation($"GET method invoked for an author with ID {id}");
 
 		var author = await _context.Authors
 			.Include(a => a.Books)
 			.ThenInclude(b => b.Genre)
-			.FirstOrDefaultAsync(a => a.Id == id);
+			.FirstOrDefaultAsync(a => a.Id == id)
+			?? throw new NotFoundException($"Author with ID {id} not found");
 
 		var authorDto = _mapper.Map<AuthorDto>(author);
 
 		return authorDto;
 	}
 
-	public async Task<Author> CreateAsync(CreateAuthorDto dto)
+	public async Task<AuthorDto> CreateAsync(CreateAuthorDto dto)
 	{
-		_logger.LogInformation("POST method invoked for an author.");
+		_logger.LogInformation("POST method invoked for an author");
 
 		var author = _mapper.Map<Author>(dto);
+
 		await _context.Authors.AddAsync(author);
 		await _context.SaveChangesAsync();
 
-		_logger.LogInformation($"Author created with ID: {author.Id}");
+		var authorDto = _mapper.Map<AuthorDto>(author);
 
-		return author;
+		_logger.LogInformation($"Author created with ID {author.Id}");
+
+		return authorDto;
 	}
 
 	public async Task DeleteAsync(int id)
 	{
-		_logger.LogInformation($"DELETE method invoked for an author with id: {id}.");
+		_logger.LogInformation($"DELETE method invoked for an author with ID {id}");
 
 		var author = await _context.Authors
 			.FirstOrDefaultAsync(a => a.Id == id)
-			?? throw new NotFoundException("Author not found");
+			?? throw new NotFoundException($"Author with ID {id} not found");
 
 		_context.Authors.Remove(author);
 		await _context.SaveChangesAsync();
 
-		_logger.LogInformation($"Author deleted with ID: {author.Id}");
+		_logger.LogInformation($"Author deleted with ID {author.Id}");
 	}
 }

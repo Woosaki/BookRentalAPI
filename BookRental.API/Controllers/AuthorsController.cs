@@ -1,5 +1,6 @@
 ﻿using BookRental.Application.Dtos;
 using BookRental.Application.Interfaces;
+using BookRental.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookRental.API.Controllers;
@@ -20,9 +21,6 @@ public class AuthorsController : ControllerBase
 	{
 		var authors = await _authorService.GetAsync();
 
-		if (!authors.Any())
-			return NotFound();
-
 		return Ok(authors);
 	}
 
@@ -31,20 +29,15 @@ public class AuthorsController : ControllerBase
 	{
 		var author = await _authorService.GetByIdAsync(id);
 
-		if (author is null)
-		{
-			return NotFound();
-		}
-
 		return Ok(author);
 	}
 
 	[HttpPost]
-	public async Task<ActionResult> CreateAsync([FromBody] CreateAuthorDto dto)
+	public async Task<ActionResult<AuthorDto>> CreateAsync([FromBody] CreateAuthorDto dto)
 	{
-		var author = await _authorService.CreateAsync(dto);
+		var authorDto = await _authorService.CreateAsync(dto);
 
-		return Created($"/api/authors/{author.Id}", null);
+		return Created($"/api/authors/{authorDto.Id}", authorDto);
 	}
 
 	[HttpDelete("{id}")]
