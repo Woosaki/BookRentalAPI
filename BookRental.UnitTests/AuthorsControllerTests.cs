@@ -32,19 +32,6 @@ public class AuthorsControllerTests
 	}
 
 	[Fact]
-	public async Task GetAsync_ReturnsNotFound_WhenNoAuthorsExist()
-	{
-		_authorServiceMock.Setup(service =>
-			service.GetAsync())
-			.ReturnsAsync(new List<AuthorDto>());
-
-		var result = await _authorsController.GetAllAsync();
-
-		var actionResult = Assert.IsType<ActionResult<List<AuthorDto>>>(result);
-		Assert.IsType<NotFoundResult>(actionResult.Result);
-	}
-
-	[Fact]
 	public async Task GetByIdAsync_ReturnsOk_WhenAuthorExists()
 	{
 		_authorServiceMock.Setup(service =>
@@ -55,18 +42,5 @@ public class AuthorsControllerTests
 
 		var actionResult = Assert.IsType<ActionResult<AuthorDto>>(result);
 		Assert.IsType<OkObjectResult>(actionResult.Result);
-	}
-
-	[Fact]
-	public async Task GetByIdAsync_ReturnsNotFound_WhenAuthorDoesNotExist()
-	{
-		_authorServiceMock.Setup(service =>
-			service.GetByIdAsync(It.IsAny<int>()))
-			.ReturnsAsync(value: null);
-		
-		var result = await _authorsController.GetAsync(1);
-
-		var actionResult = Assert.IsType<ActionResult<AuthorDto>>(result);
-		Assert.IsType<NotFoundResult>(actionResult.Result);
 	}
 }

@@ -7,6 +7,6 @@ public interface IAuthorService
 {
 	Task<List<AuthorDto>> GetAsync();
 	Task<AuthorDto> GetByIdAsync(int id);
-	Task<Author> CreateAsync(CreateAuthorDto dto);
+	Task<AuthorDto> CreateAsync(CreateAuthorDto dto);
 	Task DeleteAsync(int id);
 }

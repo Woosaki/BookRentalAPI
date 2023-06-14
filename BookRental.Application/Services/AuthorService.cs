@@ -55,7 +55,7 @@ public class AuthorService : IAuthorService
 		return authorDto;
 	}
 
-	public async Task<Author> CreateAsync(CreateAuthorDto dto)
+	public async Task<AuthorDto> CreateAsync(CreateAuthorDto dto)
 	{
 		_logger.LogInformation("POST method invoked for an author");
 
@@ -64,9 +64,11 @@ public class AuthorService : IAuthorService
 		await _context.Authors.AddAsync(author);
 		await _context.SaveChangesAsync();
 
+		var authorDto = _mapper.Map<AuthorDto>(author);
+
 		_logger.LogInformation($"Author created with ID {author.Id}");
 
-		return author;
+		return authorDto;
 	}
 
 	public async Task DeleteAsync(int id)
