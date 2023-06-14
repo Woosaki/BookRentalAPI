@@ -1,6 +1,5 @@
 ﻿using BookRental.Application.Exceptions;
 using System.Net;
-using System.Text.Json;
 
 namespace BookRental.API.Middlewares;
 

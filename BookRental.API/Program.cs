@@ -4,6 +4,7 @@ using BookRental.Application.Mapping;
 using BookRental.Application.Services;
 using BookRental.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,10 @@ builder.Services.AddDbContext<BookRentalDbContext>(options =>
 	options.UseSqlServer(
 		builder.Configuration.GetConnectionString("DefaultConnectionString"),
 		x => x.MigrationsAssembly("BookRental.Infrastructure")));
+
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(LogLevel.Trace);
+builder.Host.UseNLog();
 
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 builder.Services.AddAutoMapper(typeof(GeneralProfile).Assembly);
