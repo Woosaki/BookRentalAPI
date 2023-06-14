@@ -13,6 +13,7 @@ public class AuthorConfiguration : IEntityTypeConfiguration<Author>
 			.HasMaxLength(50);
 
 		builder.Property(a => a.Born)
+			.HasColumnType("datetime2")
 			.IsRequired();
 
 		builder.HasMany(a => a.Books)

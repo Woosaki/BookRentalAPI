@@ -10,6 +10,7 @@ public class BookRentalDbContext : DbContext
 	public DbSet<BookBorrow> BookBorrows { get; set; }
 	public DbSet<Genre> Genres { get; set; }
 	public DbSet<User> Users { get; set; }
+	public DbSet<Role> Roles { get; set; }
 
 	public BookRentalDbContext(DbContextOptions<BookRentalDbContext> options)
 		: base(options)
