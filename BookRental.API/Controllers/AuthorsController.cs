@@ -1,5 +1,6 @@
 ﻿using BookRental.Application.Dtos.AuthorDtos;
 using BookRental.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookRental.API.Controllers;
@@ -16,6 +17,7 @@ public class AuthorsController : ControllerBase
 	}
 
 	[HttpGet]
+	[Authorize]
 	public async Task<ActionResult<List<AuthorDto>>> GetAllAsync()
 	{
 		var authors = await _authorService.GetAsync();
