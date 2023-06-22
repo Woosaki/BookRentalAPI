@@ -1,6 +1,5 @@
-﻿using BookRental.Application.Dtos;
+﻿using BookRental.Application.Dtos.BookDtos;
 using BookRental.Application.Interfaces;
-using BookRental.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookRental.API.Controllers;

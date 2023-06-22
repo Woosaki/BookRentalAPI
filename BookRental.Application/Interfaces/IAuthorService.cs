@@ -1,5 +1,4 @@
-﻿using BookRental.Application.Dtos;
-using BookRental.Domain.Entities;
+﻿using BookRental.Application.Dtos.AuthorDtos;
 
 namespace BookRental.Application.Interfaces;
 

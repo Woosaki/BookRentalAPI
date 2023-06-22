@@ -1,4 +1,4 @@
-﻿using BookRental.Application.Dtos;
+﻿using BookRental.Application.Dtos.UserDtos;
 using BookRental.Infrastructure;
 using FluentValidation;
 
