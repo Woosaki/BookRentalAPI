@@ -34,8 +34,11 @@ public class ErrorHandlingMiddleware
 	{
 		var code = HttpStatusCode.InternalServerError;
 
-		if (error is NotFoundException) code = HttpStatusCode.NotFound;
-		if (error is InvalidPublicationYearException) code = HttpStatusCode.BadRequest;
+		if (error is NotFoundException)
+			code = HttpStatusCode.NotFound;
+
+		if (error is InvalidPublicationYearException || error is BadRequestException)
+			code = HttpStatusCode.BadRequest;
 
 		context.Response.StatusCode = (int)code;
 
