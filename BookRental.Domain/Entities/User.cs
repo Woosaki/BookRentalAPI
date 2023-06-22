@@ -1,5 +1,4 @@
 ﻿using BookRental.Domain.Common;
-using System.Security.Principal;
 
 namespace BookRental.Domain.Entities;
 

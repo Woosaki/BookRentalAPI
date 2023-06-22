@@ -1,6 +1,5 @@
 ﻿using BookRental.Application.Dtos.AuthorDtos;
 using BookRental.Application.Interfaces;
-using BookRental.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookRental.API.Controllers;
