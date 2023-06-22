@@ -1,8 +1,8 @@
 using BookRental.Application.Interfaces;
-using BookRental.Application.Dtos;
 using BookRental.API.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
+using BookRental.Application.Dtos.AuthorDtos;
 
 namespace BookRental.UnitTests;
 

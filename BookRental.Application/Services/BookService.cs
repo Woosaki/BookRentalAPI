@@ -1,11 +1,11 @@
-﻿using BookRental.Application.Dtos;
-using BookRental.Application.Exceptions;
+﻿using BookRental.Application.Exceptions;
 using BookRental.Application.Interfaces;
 using BookRental.Domain.Entities;
 using BookRental.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
+using BookRental.Application.Dtos.BookDtos;
 
 namespace BookRental.Application.Services;
 

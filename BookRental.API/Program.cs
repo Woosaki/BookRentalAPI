@@ -1,5 +1,5 @@
 using BookRental.API.Extensions;
-using BookRental.Application.Dtos;
+using BookRental.Application.Dtos.UserDtos;
 using BookRental.Application.Interfaces;
 using BookRental.Application.Mapping;
 using BookRental.Application.Services;

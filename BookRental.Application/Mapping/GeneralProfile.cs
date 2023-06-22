@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using BookRental.Application.Dtos;
+using BookRental.Application.Dtos.AuthorDtos;
+using BookRental.Application.Dtos.BookDtos;
+using BookRental.Application.Dtos.GenreDtos;
 using BookRental.Domain.Entities;
 
 namespace BookRental.Application.Mapping;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BookRental.Application.Dtos;
+using BookRental.Application.Dtos.AuthorDtos;
 using BookRental.Application.Exceptions;
 using BookRental.Application.Interfaces;
 using BookRental.Domain.Entities;
