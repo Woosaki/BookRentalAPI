@@ -6,9 +6,6 @@ namespace BookRental.Application.Dtos.AuthorDtos;
 
 public class CreateAuthorDto
 {
-    [Required]
-    [MaxLength(50)]
     public string Name { get; set; }
-    [Required]
     public DateTime Born { get; set; }
 }

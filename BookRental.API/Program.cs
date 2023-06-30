@@ -16,6 +16,8 @@ using NLog.Web;
 using System.Text.Json.Serialization;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using BookRental.Application.Dtos.AuthorDtos;
+using BookRental.Application.Dtos.BookDtos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +60,8 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateAuthorDto>, CreateAuthorDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateBookDto>, CreateBookDtoValidator>();
 
 builder.Services.AddAutoMapper(typeof(GeneralProfile).Assembly);
 
