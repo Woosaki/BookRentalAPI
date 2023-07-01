@@ -1,4 +1,5 @@
-﻿using BookRental.Application.Dtos.UserDtos;
+﻿using AutoMapper;
+using BookRental.Application.Dtos.UserDtos;
 using BookRental.Application.Exceptions;
 using BookRental.Application.Interfaces;
 using BookRental.Domain.Entities;
@@ -18,15 +19,18 @@ public class AccountService : IAccountService
 	private readonly BookRentalDbContext _context;
 	private readonly IPasswordHasher<User> _passwordHasher;
 	private readonly IConfiguration _configuration;
+	private readonly IMapper _mapper;
 
 	public AccountService(
 		BookRentalDbContext context,
 		IPasswordHasher<User> passwordHasher,
-		IConfiguration configuration)
+		IConfiguration configuration,
+		IMapper mapper)
 	{
 		_context = context;
 		_passwordHasher = passwordHasher;
 		_configuration = configuration;
+		_mapper = mapper;
 	}
 
 	public async Task RegisterAsync(RegisterUserDto dto)
@@ -35,7 +39,7 @@ public class AccountService : IAccountService
 		{
 			Name = dto.Name,
 			Email = dto.Email,
-			RoleId = dto.RoleId
+			RoleId = 1
 		};
 
 		newUser.PasswordHash = _passwordHasher.HashPassword(newUser, dto.Password);
@@ -79,5 +83,34 @@ public class AccountService : IAccountService
 
 		var tokenHandler = new JwtSecurityTokenHandler();
 		return tokenHandler.WriteToken(token);
+	}
+
+	public async Task<List<UserDto>> GetAllAsync()
+	{
+		var accounts = await _context.Users
+			.Include(u => u.Role)
+			.ToListAsync();
+
+		var accountDtos = _mapper.Map<List<UserDto>>(accounts);
+
+		return accountDtos;
+	}
+
+	public async Task<UserDto> ChangeRole(ChangeRoleDto dto)
+	{
+		var user = await _context.Users
+			.Include(u => u.Role)
+			.FirstOrDefaultAsync(u => u.Id == dto.UserId)
+			?? throw new BadRequestException("User with that Id doesn't exist.");
+
+		user.RoleId = dto.RoleId;
+
+		await _context.SaveChangesAsync();
+
+		await _context.Entry(user).Reference(u => u.Role).LoadAsync();
+
+		var userDto = _mapper.Map<UserDto>(user);
+
+		return userDto;
 	}
 }

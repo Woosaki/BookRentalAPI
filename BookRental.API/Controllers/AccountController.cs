@@ -1,5 +1,6 @@
 ﻿using BookRental.Application.Dtos.UserDtos;
 using BookRental.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookRental.API.Controllers;
@@ -29,5 +30,23 @@ public class AccountController : ControllerBase
 		string token = await _accountService.GenerateJwt(dto);
 
 		return Ok(token);
+	}
+
+	[HttpGet]
+	[Authorize(Roles = "Admin")]
+	public async Task<ActionResult<List<UserDto>>> GetAll()
+	{
+		var accounts = await _accountService.GetAllAsync();
+
+		return Ok(accounts);
+	}
+
+	[HttpPatch("ChangeRole")]
+	[Authorize(Roles = "Admin")]
+	public async Task<ActionResult<UserDto>> ChangeRole([FromBody] ChangeRoleDto dto)
+	{
+		var user = await _accountService.ChangeRole(dto);
+
+		return Ok(user);
 	}
 }

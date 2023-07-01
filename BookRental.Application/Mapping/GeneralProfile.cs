@@ -2,6 +2,7 @@
 using BookRental.Application.Dtos.AuthorDtos;
 using BookRental.Application.Dtos.BookDtos;
 using BookRental.Application.Dtos.GenreDtos;
+using BookRental.Application.Dtos.UserDtos;
 using BookRental.Domain.Entities;
 
 namespace BookRental.Application.Mapping;
@@ -25,5 +26,8 @@ public class GeneralProfile : Profile
 		CreateMap<Genre, GenreDto>();
 
 		CreateMap<CreateAuthorDto, Author>();
+
+		CreateMap<User, UserDto>()
+			.ForMember(m => m.Role, c => c.MapFrom(u => u.Role.Name));
 	}
 }
