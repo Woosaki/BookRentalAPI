@@ -13,6 +13,7 @@ public class CreateAuthorDtoValidator : AbstractValidator<CreateAuthorDto>
 			.MaximumLength(50).WithMessage("Name's length cannot exceed 50 characters.");
 
         RuleFor(x => x.Born)
-            .NotEmpty().WithMessage("Born date is required.");
+            .NotEmpty().WithMessage("Born date is required.")
+			.LessThanOrEqualTo(DateTime.UtcNow).WithMessage("Date must be from the past.");
 	}
 }

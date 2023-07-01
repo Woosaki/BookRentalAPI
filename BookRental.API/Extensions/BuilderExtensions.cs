@@ -70,6 +70,7 @@ public static class BuilderExtensions
 		builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 		builder.Services.AddScoped<IValidator<CreateAuthorDto>, CreateAuthorDtoValidator>();
 		builder.Services.AddScoped<IValidator<CreateBookDto>, CreateBookDtoValidator>();
+		builder.Services.AddScoped<IValidator<ChangeRoleDto>, ChangeRoleDtoValidator>();
 
 		return builder;
 	}
